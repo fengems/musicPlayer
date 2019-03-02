@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>播放器功能测试</title>
+    <style>
+        body {
+            background: #d2d5d6;
+        }
+        .app {
+            background: #e9edee;
+            width: 480px;
+            height: 550px;
+            margin: 50px auto;
+            position: relative;
+            border-radius: 35px;
+            overflow: hidden;
+        }
+        .music-player {
+            background: #e9edee;
+            width: 400px;
+            height: 255px;
+            margin: 50px auto;
+            padding: 20px 40px 40px 40px;
+            position: relative;
+            bottom: -180px;
+            border-radius: 0px 0px 35px 35px;
+        }
+        #id-img-cover {
+            width: 480px;
+            position: absolute;
+            top: -140px;
+            left: 0px;
+            z-index: 0;
+            border-radius: 35px;
+        }
+        .line {
+            display: inline-block;
+        }
+        .list {
+            overflow: auto;
+            width: 100%;
+            height: 125px;
+            position: absolute;
+            z-index: 50;
+        }
+        .audio {
+            position: absolute;
+            bottom: 25px;
+            z-index: 100;
+        }
+        .barShell {
+            width: 300px;
+            position: absolute;
+            left: 0px;
+            bottom: 85px;
+        }
+        .middle {
+            width: 45px;
+        }
+        #id-img-toggle {
+            position: relative;
+            bottom: -7px;
+        }
+        .time {
+            position: absolute;
+            left: 315px;
+            bottom: 81px;
+            font-size: 14px;
+            color: #414141;
+        }
+        .audio-bar {
+            width: 100%;
+            height: 10px;
+            background: #414141;
+            border-radius: 5px;
+        }
+        .audio-progress {
+            width: 0px;
+            height: 100%;
+            background: #cdd2d7;
+            border-radius: 5px;
+        }
+        .playMode {
+            width: 35px;
+            position: absolute;
+            bottom: 10px;
+            left: 230px;
+        }
+        .voice-img {
+            width: 35px;
+            position: absolute;
+            bottom: 10px;
+            left: 280px;
+        }
+        .voice-bar {
+            width: 75px;
+            height: 10px;
+            background: #414141;
+            position: absolute;
+            bottom: 22px;
+            left: 318px;
+            border-radius: 5px;
+        }
+        .voice-progress {
+            width: 50%;
+            height: 100%;
+            background: #cdd2d7;
+            border-radius: 5px;
+        }
+        .hide {
+            display: none;
+        }
+        /*列表部分*/
+        .song {
+            height: 22px;
+            position: relative;
+            color: #414141;
+            width: 400px;
+        }
+        .class-span-number {
+            width: 20px;
+            overflow: hidden;
+        }
+        .class-span-like {
+            width: 20px;
+        }
+        .like {
+            width: 100%;
+        }
+        .songName {
+            width: 120px;
+            height: 100%;
+            overflow: hidden;
+        }
+        .class-span-singer {
+            width: 140px;
+            height: 100%;
+            overflow: hidden;
+        }
+        .class-span-time {
+            position: relative;
+            left: 33px;
+            top: -4px;
+        }
+        .title {
+            height: 22px;
+            width: 400px;
+        }
+        .active {
+            background: #414141;
+            color: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+<!--音乐图片-->
+<img src="" alt="" id="id-img-cover">
+
+<div class="music-player">
+
+
+    <!--歌曲列表-->
+    <div class="title">
+        <!--序号-->
+        <span class="class-span-number line"></span>
+        <!--打星-->
+        <span class="class-span-like line"></span>
+        <!--歌曲名-->
+        <span class="songName line">音乐标题</span>
+        <!--歌手-->
+        <span class="class-span-singer line">歌手</span>
+        <!--时长-->
+        <span class="class-span-time line">时长</span>
+    </div>
+    <div class="list" data-playnow="1">
+        <div class="">
+            
+        </div>
+    </div>
+
+    <!--控制栏 bar-->
+    <div class="audio">
+        <audio id="id-audio-player" src="audio/1.mp3"></audio>
+        <!--三个控制按钮-->
+        <div class="audio-controller line">
+            <span id="id-button-previous">
+                <img src="image/Favorites/last-button.png" alt="上一首" class="middle">
+            </span>
+            <span id="id-button-toggle" data-toggle="play">
+                <img src="image/Favorites/play-button.png" alt="播放/暂停" id="id-img-toggle">
+            </span>
+            <span id="id-button-next">
+                <img src="image/Favorites/next-button.png" alt="下一首" class="middle">
+            </span>
+        </div>
+        <div class="line hide">
+            <img src="https://api.bzqll.com/music/netease/pic?id=516728102&imgSize=400&key=579621905" alt="" class="songPic">
+        </div>
+        <!--播放时间-->
+        <div class="line time">
+            <span id="id-span-currentTime">00:00</span>/<span id="id-span-duration">00:00</span>
+        </div>
+        <!--进度条-->
+        <div class="barShell line">
+            <div class="audio-bar">
+                <div class="audio-progress" style="" data-len=""></div>
+            </div>
+        </div>
+        <!--调节音量-->
+        <div class="audio-volume line">
+            <img src="image\Favorites\middle-voice.png" alt="" class="voice-img">
+        </div>
+        <!--切换播放模式-->
+        <div id="id-div-status" class="line" data-status="order">
+            <img src="image/Favorites/order.png" alt="" class="playMode">
+            <div class="voice-bar">
+                <div class="voice-progress" style="" data-len=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="tools.js"></script>
+<script src="bindEvents.js"></script>
+<script src="playMode.js"></script>
+<script src="功能测试.js"></script>
+
+<!--
+待更新
+1. 音量条 (调节音量)
+2. 点击列表后改变背景颜色
+3. 点击 like, 改变 like 的图片, 并记录这首点了 like
+-->
+</body>
+</html>
